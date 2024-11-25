@@ -58,6 +58,13 @@ public class Algebra {
 		for (int i = 0; i < n; i++) {
 			product = times(product, x);
 		}
+
+		int par = mod(x, 2);
+		
+	if (x < 0 && par != 0) {
+			product = -product;
+		}
+
 		return product;
 
 	}
@@ -70,12 +77,12 @@ public class Algebra {
 		if (x1 < 0) x1 = -x1;
     	if (x2 < 0) x2 = -x2;
 	
-		int result = 0;
+		int quotient = 0;
 		while (x1 >= x2) {
 			x1 -= x2;
-			result++;
+			quotient++;
 		}
-		return negative ? (-result) : result;
+		return negative ? (-quotient) : quotient;
 	}
 
 	// Returns x1 % x2
@@ -95,27 +102,19 @@ public class Algebra {
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
 		
-		double epsilon = 0.01, L = 1.0, H = x;
-		double g = (L + H) / 2.0;
-		
-		double number1 = times(g, g);
-		double number2 = minus(number1, x);
-		
-		if (number2 < 0) number2 = -number2;
-		
-		while (number2 >= epsilon) {
-			if (number1 < x) {
-				L = g;
-			} else { 
-				H = g;
-			}
-			g = (L + H) / 2;
+	int i = 1;
+	int multiplication = times(i, i);
 
-			number1 = times(g, g);
-			number2 = minus(number1, x);
-			if (number2 < 0) number2 = -number2;
+    while (multiplication < x) {
+        i++;
+		multiplication = times(i, i);
+		
+    }
 
-			}
-		return (int) g;
+    if (multiplication > x) {
+        return i - 1;
+    }
+
+		return i;
 	}
 }
