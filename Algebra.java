@@ -64,18 +64,26 @@ public class Algebra {
 
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
+
+		boolean negative = (x1 < 0) ^ (x2 < 0);
+		
+		if (x1 < 0) x1 = -x1;
+    	if (x2 < 0) x2 = -x2;
 	
 		int result = 0;
 		while (x1 >= x2) {
 			x1 -= x2;
 			result++;
 		}
-		return result;
+		return negative ? (-result) : result;
 	}
 
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
 		
+		if (x1 < 0) x1 = -x1;
+    	if (x2 < 0) x2 = -x2;
+
 		while (x1 >= x2) {
 			x1 -= x2;
 		
@@ -86,7 +94,28 @@ public class Algebra {
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
-		// Replace the following statement with your code
-		return 0;
-	}	  	  
+		
+		double epsilon = 0.01, L = 1.0, H = x;
+		double g = (L + H) / 2.0;
+		
+		double number1 = times(g, g);
+		double number2 = minus(number1, x);
+		
+		if (number2 < 0) number2 = -number2;
+		
+		while (number2 >= epsilon) {
+			if (number1 < x) {
+				L = g;
+			} else { 
+				H = g;
+			}
+			g = (L + H) / 2;
+
+			number1 = times(g, g);
+			number2 = minus(number1, x);
+			if (number2 < 0) number2 = -number2;
+
+			}
+		return (int) g;
+	}
 }
