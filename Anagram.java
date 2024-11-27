@@ -70,6 +70,10 @@ public class Anagram {
                 answer += C;
             }
 
+			else if (C == 32) {
+				answer += C;
+			}
+
         }
 
         return answer;
