@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class TestAnagram {
     private static int totalTests = 0;
     private static int passedTests = 0;
@@ -12,10 +14,13 @@ public class TestAnagram {
         System.out.println("Success rate: " + (passedTests * 100.0 / totalTests) + "%");
     }
 
-    public static int testIsAnagram() {
+    public static int testIsAnagram(String str1, String str2) {
         System.out.println("\nTesting isAnagram method:");
         totalTests += 5;
 
+        
+
+    }
         // Test case 1: Basic anagram
         boolean test1 = Anagram.isAnagram("silent", "listen");
         System.out.println("Test 1 (basic anagram): " + (test1 ? "PASS" : "FAIL"));
@@ -40,11 +45,17 @@ public class TestAnagram {
                     (test4 ? 1 : 0) + (test5 ? 1 : 0) + (test6 ? 1 : 0);
         passedTests += passed;
         return passed;
-    }
+    
 
     public static int testPreProcess() {
         System.out.println("\nTesting preProcess method:");
         totalTests += 4;
+
+        
+
+        }
+
+
 
         // Test case 1: Simple lowercase
         boolean test1 = Anagram.preProcess("abc").equals("abc");
@@ -67,10 +78,15 @@ public class TestAnagram {
         return passed;
     }
 
-    public static int testRandomAnagram() {
+    public static int testRandomAnagram(String str) {
         System.out.println("\nTesting randomAnagram method:");
         totalTests += 3;
+
         
+    }
+
+
+
         // Test case 1: Check if result is an anagram
         String original = "hello";
         String randomized = Anagram.randomAnagram(original);
